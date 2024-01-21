@@ -9,6 +9,14 @@
     - Intersection (∩)
     - Difference (-)
 
+# How To Use Query Processor
+1. Familiarize yourself with the relations and query syntax below
+2. Open ```input.txt``` and populate the file with your desired relations
+3. Open ```main.py``` and locate the variable ```query```
+4. Write the desired query you would like to execute
+5. Run ```main.py```
+6. The output is the result of the query based on the provided relations
+
 # Relations Syntax
 All relations created MUST EXACTLY MATCH the described format in order for the query processor to be able to parse your relations.
 ```
