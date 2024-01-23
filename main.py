@@ -1,7 +1,9 @@
 import ast, random, re
 
+# using a dictionary data structure to store the relations
 tables = {}
 
+# function that generates a random string with any given length
 def generate_random_string(length):
     characters = random.choices(
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
@@ -10,6 +12,7 @@ def generate_random_string(length):
     random_string = ''.join(characters)
     return random_string
 
+# function that will extract the contents from the first set of parantheses
 def helper(query):
     ctr = 0
     arg1 = ""
@@ -23,11 +26,13 @@ def helper(query):
                 return arg1
         arg1 += i
 
+# function that splits a given condition into its left-hand side, right-hand side, and the operator
 def resolve_condition(condition):
     condition = condition.strip().split()
     lhs, op, rhs = condition[0], condition[1], condition[2]
     return [lhs, op, rhs]
 
+# function that recursively resolves a given query
 def resolve(query):
     # selection
     if query[0] == '$':
@@ -269,6 +274,9 @@ def resolve(query):
 
         return result
     
+    return "ERROR: Syntax error, please double check your query"
+    
+# helper function for parsing a given relation string into a more suitable structure
 def parse_relation(relation):
     # Define a regular expression pattern
     pattern = re.compile(r'(\w+)\s*\(([^)]+)\)\s*=\s*{([^}]+)}', re.DOTALL)
@@ -300,6 +308,7 @@ def parse_relation(relation):
 
     return [table_name, attributes, tuples]
 
+# function that parses the relations from input.txt
 def loadInput(filename):
     f = open(filename, "r")
     input = f.read() 
@@ -317,11 +326,11 @@ def loadInput(filename):
         tables[table_name]["relations"] = relation
         tables[table_name]["attributes"] = attributes 
 
-       
+# MODIFY THIS QUERY        
 query = "J(Student)(takes)(id == sid)"
 loadInput("input.txt")
 
-print(tables)
+print("Tables: ", tables)
 print("Query: " + query)
 print("\nThe result set:")
 print(resolve(query))
