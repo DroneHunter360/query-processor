@@ -13,9 +13,10 @@ Student2 (id, sname, email) = {
 }
 
 Course (name, hours) = {
-    "Math Algebra", "3"
-    "Pythics", "2"
-    "Network", "3"
+    "Math Algebra", 3
+    "Pythics", 2
+    "Network", 3
+    "Computer Science", 5
 }
 
 takes (sid, cname) = {

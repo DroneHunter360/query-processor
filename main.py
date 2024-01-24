@@ -329,7 +329,14 @@ def loadInput(filename):
 
 # MODIFY THIS QUERY        
 query = ""
+
+# query execution process
 loadInput("input.txt")
+print("Relations: ")
+pprint(tables)
+print("\nQuery to execute: " + query)
+print("\nThe result set:")
+pprint(resolve(query))
 
 """
 Test queries for video demonstration:
@@ -359,9 +366,3 @@ NESTED QUERY
 #(J(U(Student)(Student2))(J(Course)(takes)(name == cname))(id == sid))(sname, email, cname, hours)
 
 """
-
-print("Relations: ")
-pprint(tables)
-print("\nQuery to execute: " + query)
-print("\nThe result set:")
-pprint(resolve(query))
