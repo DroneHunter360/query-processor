@@ -1,4 +1,5 @@
 import ast, random, re
+from pprint import pprint
 
 # using a dictionary data structure to store the relations
 tables = {}
@@ -327,10 +328,40 @@ def loadInput(filename):
         tables[table_name]["attributes"] = attributes 
 
 # MODIFY THIS QUERY        
-query = "J(Student)(takes)(id == sid)"
+query = ""
 loadInput("input.txt")
 
-print("Tables: ", tables)
-print("Query: " + query)
+"""
+Test queries for video demonstration:
+
+SELECTION
+$(Student)(id > 2)
+
+PROJECTION
+#(Student)(sname, email)
+
+JOIN
+J(Student)(takes)(id == sid)
+L(Student)(takes)(id == sid)
+R(Student)(takes)(id == sid)
+F(Student)(takes)(id == sid)
+
+UNION
+U(Student)(Student2)
+
+INTERSECTION
+I(Student)(Student2)
+
+DIFFERENCE
+D(Student)(Student2)
+
+NESTED QUERY
+#(J(U(Student)(Student2))(J(Course)(takes)(name == cname))(id == sid))(sname, email, cname, hours)
+
+"""
+
+print("Relations: ")
+pprint(tables)
+print("\nQuery to execute: " + query)
 print("\nThe result set:")
-print(resolve(query))
+pprint(resolve(query))
